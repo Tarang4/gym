@@ -17,6 +17,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  bool isbox1=true;
+  bool isbox2=false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +56,9 @@ class _MainScreenState extends State<MainScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            categoryClick(box1: true,box2: false);
+                          },
                           child: Icon(
                             Icons.phone_rounded,
                             size: 31,
@@ -61,6 +66,8 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                         InkWell(
                           onTap: () {
+                            categoryClick(box1: false,box2: true);
+
                             // Navigator.push(context, MaterialPageRoute(builder: (context)=>ExtraPage()));
                           },
                           child: Icon(
@@ -74,7 +81,7 @@ class _MainScreenState extends State<MainScreen> {
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
                     child: Container(
-                      child: box1(),
+                      child: isbox1?box1():box2(),
                     ),
                   )
                 ],
@@ -210,5 +217,11 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ],
     );
+  }
+  categoryClick({bool box1 = true,bool box2=false}){
+    setState(() {
+      isbox1=box1;
+      isbox2=box2;
+    });
   }
 }
